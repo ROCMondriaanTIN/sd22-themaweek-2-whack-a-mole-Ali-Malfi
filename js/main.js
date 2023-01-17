@@ -26,5 +26,16 @@ allTiles.forEach(function(tile){
 });
 
 function tileclick(tile) {
-    console.log(tile);
+    // console.log(tile);
+    if (tile.classList.contains("active")) {
+        playerPoints = playerPoints + 1;
+    }else {
+        playerPoints = playerPoints - 2;
+        
+    }
+    console.log(playerPoints);
+
+    tile.classList.remove("active");
+    playerPointsElement.textContent = playerPoints;
 }
+
