@@ -1,12 +1,6 @@
 console.log("loaded");
 const minimumTime = 500;
 const maximumTime = 1250;
-let start = false;
-start = document.querySelector(".start");
-start.addEventListener("click",startBtn);
-function startBtn() {
-    startGame();
-}
 
 let playerPoints =0;
 
@@ -67,9 +61,8 @@ function activateRandomTile() {
 function startGame() {
     const randomTime = getRandomNumber(minimumTime, maximumTime);
     setTimeout(activateRandomTile, randomTime);
-    
 }
-
+startGame();
 
 
 

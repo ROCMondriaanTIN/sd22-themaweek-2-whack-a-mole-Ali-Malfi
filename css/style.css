@@ -8,14 +8,48 @@ body {
     background-color: burlywood;
     cursor: pointer;
     border-radius: 100%;
+    /* grid-area: te; */
 }
 .active {
-    background-color: green;
+    background-image: url(../img/fish.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-.wrapper {
+.wrapper{
+    display: grid;
+    grid-template-areas: 
+    "sc sc sc"
+    "main main main";
+}
+
+.wrapper-tile {
+    grid-area: main;
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(3,100px);
     grid-template-rows: repeat(3, 100px);
+    
+    width: 400px;
+    margin: auto;
 
+}
+.score {
+    grid-area: sc;
+    width: 400px;
+    margin: auto;
+}
+.header {
+    grid-area: hd;
+    width: 400px;
+    margin: auto;
+
+}
+.start {
+    width: 300px;
+    margin-left: 445px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: rgb(63, 10, 10);
+    color: aqua;
+    cursor: pointer;
 }
