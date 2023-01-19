@@ -4,6 +4,7 @@ const maximumTime = 1250;
 
 let playerPoints =3;
 let gameStarted = false;
+let timerId;
 
 const playerPointsElement = document.querySelector(".player-points");
 const allTiles = document.querySelectorAll(".tile");
@@ -11,6 +12,8 @@ const startGameButton = document.querySelector(".start-game-button");
 startGameButton.addEventListener("click", function(){
     startGameButton.disabled = true;
     gameStarted = true;
+    playerPoints = 3;
+    playerPointsElement.textContent = playerPoints;
     startGame();
 })
 
@@ -73,12 +76,20 @@ function activateRandomTile() {
 // hier werkt de random en de tijd tussen 500, 1250 
 function startGame() {
     const randomTime = getRandomNumber(minimumTime, maximumTime);
-    setTimeout(activateRandomTile, randomTime);
+   timerId = setTimeout(activateRandomTile, randomTime);
 }
 
 function endGame() {
     gameStarted = false;
+    clearInterval(timerId);
+    clearTiles();
     
+}
+function clearTiles() {
+    for (let i = 0; i < allTiles.length; i++) {
+        const tileElement = allTiles[i];
+        tileElement.classList.remove("active");
+    }
 }
 
 
