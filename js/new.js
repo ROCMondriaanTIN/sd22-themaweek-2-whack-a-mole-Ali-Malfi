@@ -2,13 +2,15 @@ console.log("loaded");
 const minimumTime = 500;
 const maximumTime = 1250;
 
-let playerPoints =0;
+let playerPoints =3;
+let gameStarted = false;
 
 const playerPointsElement = document.querySelector(".player-points");
 const allTiles = document.querySelectorAll(".tile");
 const startGameButton = document.querySelector(".start-game-button");
 startGameButton.addEventListener("click", function(){
     startGameButton.disabled = true;
+    gameStarted = true;
     startGame();
 })
 
@@ -28,7 +30,10 @@ function getRandomNumber(min, max){
 allTiles.forEach(function(tile){
     console.log(tile);
     tile.addEventListener("click", function(){
-        tileclick(tile);
+        if(gameStarted){
+            tileclick(tile);
+        }
+       
     });
 });
 
@@ -40,8 +45,11 @@ function tileclick(tile) {
     if (tile.classList.contains("active")) {
         playerPoints = playerPoints + 1;
     }else {
-        playerPoints = playerPoints - 2;
+        playerPoints = playerPoints - 1;
         
+    }
+    if (playerPoints <=0 ) {
+        endGame();
     }
     console.log(playerPoints);
 
@@ -66,6 +74,11 @@ function activateRandomTile() {
 function startGame() {
     const randomTime = getRandomNumber(minimumTime, maximumTime);
     setTimeout(activateRandomTile, randomTime);
+}
+
+function endGame() {
+    gameStarted = false;
+    
 }
 
 
