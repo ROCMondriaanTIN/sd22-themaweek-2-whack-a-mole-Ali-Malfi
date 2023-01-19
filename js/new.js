@@ -6,6 +6,11 @@ let playerPoints =0;
 
 const playerPointsElement = document.querySelector(".player-points");
 const allTiles = document.querySelectorAll(".tile");
+const startGameButton = document.querySelector(".start-game-button");
+startGameButton.addEventListener("click", function(){
+    startGameButton.disabled = true;
+    startGame();
+})
 
 //deze random kies een nummer tussen (1,50)
 getRandomNumber(1, 50);
@@ -62,7 +67,7 @@ function startGame() {
     const randomTime = getRandomNumber(minimumTime, maximumTime);
     setTimeout(activateRandomTile, randomTime);
 }
-startGame();
+
 
 
 

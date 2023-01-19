@@ -16,8 +16,35 @@ body {
 }
 .wrapper {
     display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+    grid-template-areas: 
+    "hd hd hd hd hd hd hd hd hd hd hd hd"
+    ". . . . score score score score . . . ."
+    ". . . . bp bp bp bp . . . ."
+    ". . . .main main main main . . . .";
+}
+.header {
+    grid-area: hd;
+    text-align: center;
+}
+.score {
+    grid-area: score;
+}
+.button-panel{
+    grid-area: bp;
+}
+.tile-wrapper {
+    grid-area: main;
+    display: grid;
     gap: 10px;
     grid-template-columns: repeat(5,85px);
-    grid-template-rows: repeat(5, 85px);
+    grid-template-rows: repeat(5, 80px);
 
+}
+
+.start-game-button {
+    background-color: rgb(63, 10, 10);
+    color: aqua;
+    cursor: pointer;
+    width: 100px;
 }
