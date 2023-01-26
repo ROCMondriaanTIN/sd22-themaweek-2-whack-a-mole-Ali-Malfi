@@ -1,14 +1,18 @@
 console.log("loaded");
-const minimumTime = 500;
-const maximumTime = 1250;
+let minimumTime = 500;
+let maximumTime = 1250;
 const inputMinmum =document.querySelector(".input-mimum");
 const inputMaxmum =document.querySelector(".input-maxmum");
 const setTime = document.querySelector(".set-time");
 setTime.addEventListener("click", function(){
     minimumTime = inputMinmum.value;
     maximumTime = inputMaxmum.value;
-    
+
 });
+let stop = document.querySelector(".stop");
+stop.addEventListener("click", function(){
+    endGame();
+})
 
 let playerPoints =3;
 let gameStarted = false;
