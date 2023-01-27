@@ -44,7 +44,7 @@ allTiles.forEach(function(tile){
 });
 
 //this function als je op de active geklikt dan heb je een point maar als je niet op active geklikt
-//verlies 2 points
+//verlies 1 points
 
 function tileclick(tile) {
     // console.log(tile);
@@ -61,7 +61,7 @@ function tileclick(tile) {
         endGame();
     }
     console.log(playerPoints);
-    if(playerPoints >=2){
+    if(playerPoints >= 5){
         document.location.href = "new.html";
     }
 
