@@ -12,7 +12,8 @@ setTime.addEventListener("click", function(){
 let stop = document.querySelector(".stop");
 stop.addEventListener("click", function(){
     endGame();
-})
+});
+let img = false;
 
 let playerPoints =3;
 let gameStarted = false;
@@ -53,15 +54,18 @@ allTiles.forEach(function(tile){
 });
 
 //this function als je op de active geklikt dan heb je een point maar als je niet op active geklikt
-//verlies 2 points
+//verlies 1 points
 
 function tileclick(tile) {
     // console.log(tile);
     if (tile.classList.contains("active")) {
         playerPoints = playerPoints + 1;
+        let audio = new Audio("sounds/win.wav");
+        audio.play();
     }else {
         playerPoints = playerPoints - 1;
-        
+        let audio = new Audio("sounds/verliezen.wav");
+        audio.play();
     }
     if (playerPoints <=0 ) {
         endGame();
@@ -82,6 +86,13 @@ function activateRandomTile() {
     let randomTileNumber = getRandomNumber(0, allTiles.length-1);
     const selectedTile = allTiles[randomTileNumber];
     selectedTile.classList.add("active");
+    if(img){
+        img = false;
+        selectedTile.style.setProperty("--mole-background-image", "url(../img/vis.webp)");
+    }else {
+        img = true;
+        selectedTile.style.setProperty("--mole-background-image", "url(../img/fish.jpg)");
+    }
     startGame();
 }
 

@@ -5,10 +5,16 @@ let start = false;
 start = document.querySelector(".start");
 start.addEventListener("click",startBtn);
 function startBtn() {
+    // startGameButton.disabled = true;
+    gameStarted = true;
+    playerPoints = 3;
+    playerPointsElement.textContent = playerPoints;
     startGame();
 }
 
 let playerPoints =0;
+let gameStarted = false;
+let timerId;
 
 const playerPointsElement = document.querySelector(".player-points");
 const allTiles = document.querySelectorAll(".tile");
@@ -28,8 +34,12 @@ function getRandomNumber(min, max){
 //deze foreach loop voegt de eventlistener toe aan elke tegel zo dat de tile klikt function wordt uitgevoert 
 allTiles.forEach(function(tile){
     console.log(tile);
+    
     tile.addEventListener("click", function(){
-        tileclick(tile);
+        if(gameStarted){
+            tileclick(tile);
+        }
+       
     });
 });
 
@@ -40,11 +50,20 @@ function tileclick(tile) {
     // console.log(tile);
     if (tile.classList.contains("active")) {
         playerPoints = playerPoints + 1;
+        let audio = new Audio("sounds/win.wav");
+        audio.play();
     }else {
-        playerPoints = playerPoints - 2;
-        
+        playerPoints = playerPoints - 1;
+        let audio = new Audio("sounds/verliezen.wav");
+        audio.play();
+    }
+    if(playerPoints <= 0){
+        endGame();
     }
     console.log(playerPoints);
+    if(playerPoints >=2){
+        document.location.href = "new.html";
+    }
 
     tile.classList.remove("active");
     playerPointsElement.textContent = playerPoints;
@@ -68,6 +87,18 @@ function startGame() {
     const randomTime = getRandomNumber(minimumTime, maximumTime);
     setTimeout(activateRandomTile, randomTime);
     
+}
+function endGame() {
+    gameStarted = false;
+    clearInterval(timerId);
+    clearTiles();
+    
+}
+function clearTiles() {
+    for (let i = 0; i < allTiles.length; i++) {
+        const tileElement = allTiles[i];
+        tileElement.classList.remove("active");
+    }
 }
 
 
